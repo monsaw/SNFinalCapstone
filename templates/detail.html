@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block bodyblock %}
+
+<div class="jumbotron">
+  <hr>
+  <center><h4>{{blog.title}} - <h6>{{blog.date_created}}</h6></h4></center>
+  <hr><br>
+  <p>{{blog.body|safe|linebreaksbr}}</p>
+</div>
+
+{% endblock %}

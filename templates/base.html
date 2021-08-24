@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <!-- CSS only -->
+    <!-- <script src="{% static 'bootstrap_css/js/popper.js' %}" charset="utf-8"></script>
+    <script src="{% static 'bootstrap_css/js/mini.js' %}" charset="utf-8"></script>
+    <script src="{% static 'bootstrap_css/js/jquery.js' %}" charset="utf-8"></script>
+    <link rel="stylesheet" href="{% static 'bootstrap_css/css/styletwos.css' %}"> -->
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js" integrity="sha384-eMNCOe7tC1doHpGoWe/6oMVemdAVTMs2xqW4mwXrXsW0L84Iytr2wi5v2QjrP/xp" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js" integrity="sha384-cn7l7gDp0eyniUwwAZgrzD06kc/tftFf19TOAs2zVinnD/C7E91j9yyk5//jjpt/" crossorigin="anonymous"></script>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+<link rel="stylesheet" href="{% static 'master.css' %}">
+
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-primary">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="{% url 'project:index' %}"><h2 class='top-bars'>MiniBlog</h2></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="{% url 'project:home' %}"><h4 class='top-bars'>Home</h4></a>
+            </li>
+
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <h4 class='top-bars'>Category</h4>
+              </a>
+
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                {% for cat in cats %}
+                <li><a class="dropdown-item" href="{% url 'project:catdetail' cat.pk %}">{{cat.name}}</a></li>
+                {% endfor %}
+
+                {% if user.is_authenticated %}
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="{% url 'project:catcreate' %}">Add Category</a></li>
+                {% endif %}
+              </ul>
+
+            </li>
+            {% if not user.is_authenticated %}
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="{% url 'project:registration' %}"><h4 class='top-bars'>Register</h4></a>
+            </li>
+            {% endif %}
+            {% if user.is_authenticated %}
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="{% url 'project:blogcreate' %}"><h4 class='top-bars'>Create Blog</h4></a>
+            </li>
+            {% endif %}
+            <span class='top-bar' >
+              {% if user.is_authenticated %}
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="{% url 'project:logout' %}"><h4 class='top-bars-right'>Logout</h4></a>
+              </li>
+              {% else %}
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="{% url 'project:login' %}"><h4 class='top-bars-right'>Login</h4></a>
+            </li>
+            {% endif %}
+            </span>
+          </ul>
+
+        </div>
+      </div>
+    </nav>
+
+    {% block bodyblock %}
+
+    {% endblock %}
+
+
+  </body>
+</html>

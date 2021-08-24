@@ -1,0 +1,30 @@
+h2{
+  margin-right: 80px;
+}
+
+.top-bars{
+  color : white;
+}
+h4{
+  margin-top: 40px;
+  margin-left: 20px;
+}
+.top-bars-right{
+  display: inline;
+  color: white;
+  margin-top: 40px;
+}
+
+.top-bar{
+
+  position: absolute;
+  right :50px;
+  top: 48px;
+}
+.blog{
+  text-decoration : none;
+
+}
+.side{
+  display: inline;
+}

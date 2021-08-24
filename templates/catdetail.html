@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block bodyblock %}
+
+<div class="jumbotron">
+    <center><h2>{{catdel.name}}</h2></center>
+  <hr>
+  {% for cats in catdel.categorys.all %}
+  <a class="blog" href="{% url 'project:detail' cats.pk %}"><h4>{{cats.title}} - <span><h6 class='side'>{{cats.date_created}}</h6></span></h4></a>
+  <hr><br>
+
+  {% endfor %}
+</div>
+
+{% endblock %}
